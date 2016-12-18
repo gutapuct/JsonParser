@@ -63,7 +63,7 @@ namespace CourseEPAM_Zakhar.Json
                     else if (isName) name.Append(json[i]); //выяснение имени свойства
                     else if (json[i] == ',' && name.Length > 0 && !isArray && !isObject) //добавляем свойство и начинаем обрабатывать следующее свойство
                     {
-                        objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString());
+                        objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                         isName = false;
                         isValue = false;
                         name = new StringBuilder();
@@ -71,7 +71,7 @@ namespace CourseEPAM_Zakhar.Json
                     }
                     else if (json[i] == Consts.BracketCloseBrace && name.Length > 0 && !isObject) //добавляем объект, если встречаем } не в значении свойства
                     {
-                        objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString());
+                        objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                         _objectsProperties.Add(objectProperties);
                         isName = false;
                         isValue = false;
@@ -90,7 +90,7 @@ namespace CourseEPAM_Zakhar.Json
                 }
                 if (name.Length != 0)
                 {
-                    objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString());
+                    objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                     _objectsProperties.Add(objectProperties);
                 }
                 return _objectsProperties; //возвращаем все объекты

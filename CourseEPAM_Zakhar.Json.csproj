@@ -94,10 +94,6 @@
       <Project>{49d79469-bb52-416f-bc85-31b77fc11b69}</Project>
       <Name>EPAM.CSCourse2016.ParserPerfTester.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="UnitTests\UnitTests.csproj">
-      <Project>{91ef91be-515a-4ef4-9a62-7d40d3a06682}</Project>
-      <Name>UnitTests</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

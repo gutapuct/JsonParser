@@ -25,7 +25,6 @@ namespace CourseEPAM_Zakhar.Json
             else if (decimal.TryParse(json, out d)) return d; //если число
             else if (json.ToLower().Trim() == "null") return null; //если null
             else if (json[0] == Consts.CharQuotes && json[json.Length - 1] == Consts.CharQuotes) return json; //если строка
-
             else
             {
                 if (!json.Contains(Consts.BracketOpenBrace) && !json.Contains(Consts.BracketCloseBrace)) //если просто массив
@@ -48,29 +47,39 @@ namespace CourseEPAM_Zakhar.Json
                 var isObject = false;
                 for (var i = 0; i < json.Length; i++)
                 {
-                    if (json[i] == Consts.BracketOpenBrace && !isValue) objectProperties = new ObjectProperties(); //создаем объект, если встречаем {
+                    if (json[i] == Consts.BracketOpenBrace && !isValue)
+                    {
+                        objectProperties = new ObjectProperties(); //создаем объект, если встречаем '{'
+                    }
                     else if (json[i] == Consts.CharQuotes && !isValue) //начинаем запоминать имя свойства
                     {
-                        i++;
-                        do
-                        {
-                            name.Append(json[i]);
-                            i++;
-                        } while (json[i] != '"'); //ищем конец ключа
-                        while (json[i] != ':') //ищем начало значения
+                        try
                         {
                             i++;
+                            do
+                            {
+                                name.Append(json[i]);
+                                i++;
+                            } while (json[i] != '"'); //ищем конец ключа
+                            while (json[i] != ':') //ищем начало значения
+                            {
+                                i++;
+                            }
+                            isValue = true;
                         }
-                        isValue = true;
+                        catch (IndexOutOfRangeException)
+                        {
+                            return Consts.Error;
+                        }
                     }
-                    else if (json[i] == ',' && name.Length > 0 && !isArray && !isObject) //добавляем свойство и начинаем обрабатывать следующее свойство
+                    else if (json[i] == ',' && !isArray && !isObject) //добавляем свойство и начинаем обрабатывать следующее свойство
                     {
                         objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                         isValue = false;
                         name = new StringBuilder();
                         value = new StringBuilder();
                     }
-                    else if (json[i] == Consts.BracketCloseBrace && name.Length > 0 && !isObject) //добавляем объект, если встречаем } не в значении свойства
+                    else if (json[i] == Consts.BracketCloseBrace && !isObject) //добавляем объект, если встречаем '}' не в значении свойства
                     {
                         objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                         _objectsProperties.Add(objectProperties);
@@ -93,6 +102,8 @@ namespace CourseEPAM_Zakhar.Json
                     objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                     _objectsProperties.Add(objectProperties);
                 }
+                if (isObject || isArray) return Consts.Error;
+
                 return _objectsProperties; //возвращаем все объекты
             }
         }

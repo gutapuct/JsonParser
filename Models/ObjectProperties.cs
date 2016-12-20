@@ -9,20 +9,7 @@ namespace CourseEPAM_Zakhar.Json
 
         public void AddProperty(string name, object value = null)
         {
-            var p = _properties.Where(i => i.Name == name).FirstOrDefault();
-            if (p != null)
-            {
-                p.Value = value;
-            }
-            else
-            {
-                _properties.Add(new Property { Name = name, Value = value });
-            }
-        }
-
-        public Property GetPropertyByName(string name)
-        {
-            return _properties.Where(i => i.Name == name).FirstOrDefault();
+            _properties.Add(new Property { Name = name, Value = value });
         }
 
         public List<Property> GetProperties()

@@ -17,6 +17,10 @@ namespace CourseEPAM_Zakhar.Json
             {
                 return objectsProperties.ToString();
             }
+            else if (objectsProperties == null) //если null
+            {
+                return null;
+            }
             else
             {
                 var objects = objectsProperties as List<IObjectProperties>;

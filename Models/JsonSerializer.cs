@@ -17,14 +17,13 @@ namespace CourseEPAM_Zakhar.Json
 
         public object JsonDeserializer(string json)
         {
-            json = json.Trim();
             bool b;
             decimal d;
 
             if (String.IsNullOrWhiteSpace(json)) return Consts.Error; //если пустая строка
             else if (bool.TryParse(json, out b)) return b; //если true или false
             else if (decimal.TryParse(json, out d)) return d; //если число
-            else if (json.ToLower() == "null") return "null"; //если null
+            else if (json.ToLower().Trim() == "null") return null; //если null
             else if (json[0] == Consts.CharQuotes && json[json.Length - 1] == Consts.CharQuotes) return json; //если строка
 
             else
@@ -44,26 +43,29 @@ namespace CourseEPAM_Zakhar.Json
                 var name = new StringBuilder();
                 var value = new StringBuilder();
                 var objectProperties = new ObjectProperties();
-                var isName = false;
                 var isValue = false;
                 var isArray = false;
                 var isObject = false;
-
                 for (var i = 0; i < json.Length; i++)
                 {
                     if (json[i] == Consts.BracketOpenBrace && !isValue) objectProperties = new ObjectProperties(); //создаем объект, если встречаем {
-                    else if(json[i] == Consts.CharQuotes && !isName && !isValue) isName = true; //начинаем запоминать имя свойства
-                    else if (json[i] == Consts.CharQuotes && isName && name.Length > 0) //начинаем запоминать значение свойства
+                    else if (json[i] == Consts.CharQuotes && !isValue) //начинаем запоминать имя свойства
                     {
                         i++;
-                        isName = false;
+                        do
+                        {
+                            name.Append(json[i]);
+                            i++;
+                        } while (json[i] != '"'); //ищем конец ключа
+                        while (json[i] != ':') //ищем начало значения
+                        {
+                            i++;
+                        }
                         isValue = true;
                     }
-                    else if (isName) name.Append(json[i]); //выяснение имени свойства
                     else if (json[i] == ',' && name.Length > 0 && !isArray && !isObject) //добавляем свойство и начинаем обрабатывать следующее свойство
                     {
                         objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
-                        isName = false;
                         isValue = false;
                         name = new StringBuilder();
                         value = new StringBuilder();
@@ -72,7 +74,6 @@ namespace CourseEPAM_Zakhar.Json
                     {
                         objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                         _objectsProperties.Add(objectProperties);
-                        isName = false;
                         isValue = false;
                         name = new StringBuilder();
                         value = new StringBuilder();

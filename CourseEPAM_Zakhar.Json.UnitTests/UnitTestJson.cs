@@ -57,11 +57,11 @@ namespace CourseEPAM_Zakhar.Json.UnitTests
         [TestMethod]
         public void TestMethod5()
         {
-            string ExternalValue = "NULL";
+            string ExternalValue = "null";
             var test = new Tests();
 
             var internalValue = test.ToTestString(ExternalValue);
-            var expectation = "null";
+            string expectation = null;
 
             Assert.IsTrue(internalValue == expectation);
         }

@@ -1,12 +1,10 @@
-﻿using CourseEPAM_Zakhar.Json.Models;
-using EPAM.CSCourse2016.ParserPerfTester.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CourseEPAM_Zakhar.Json
 {
-    public class Tests: IParser
+    public class Tests: EPAM.CSCourse2016.ParserPerfTester.Common.IParser
     {
         public string ToTestString(string json)
         {

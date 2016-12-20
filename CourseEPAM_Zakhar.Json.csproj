@@ -55,7 +55,6 @@
     <Compile Include="Interfaces\IJsonSerializer.cs" />
     <Compile Include="Interfaces\IObjectProperties.cs" />
     <Compile Include="Interfaces\IObjectSerializer.cs" />
-    <Compile Include="Interfaces\IParser.cs" />
     <Compile Include="Models\JsonSerializer.cs" />
     <Compile Include="Models\ObjectProperties.cs" />
     <Compile Include="Models\ObjectSerializer.cs" />
@@ -90,7 +89,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="EPAM.CSCourse2016.ParserPerfTester.Common\EPAM.CSCourse2016.ParserPerfTester.Common.csproj">
+      <Project>{49d79469-bb52-416f-bc85-31b77fc11b69}</Project>
+      <Name>EPAM.CSCourse2016.ParserPerfTester.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnitTests\UnitTests.csproj">
+      <Project>{91ef91be-515a-4ef4-9a62-7d40d3a06682}</Project>
+      <Name>UnitTests</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

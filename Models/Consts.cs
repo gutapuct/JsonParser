@@ -1,4 +1,4 @@
-﻿namespace CourseEPAM_Zakhar.Json.Models
+﻿namespace CourseEPAM_Zakhar.Json
 {
     public abstract class Consts
     {

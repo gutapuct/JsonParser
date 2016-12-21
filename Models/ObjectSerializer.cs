@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 
-namespace CourseEPAM_Zakhar.Json
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser
 {
     class ObjectSerializer : IObjectSerializer
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CourseEPAM_Zakhar.Json
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser
 {
     public interface IObjectProperties
     {

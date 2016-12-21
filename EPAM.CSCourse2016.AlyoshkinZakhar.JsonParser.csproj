@@ -7,8 +7,8 @@
     <ProjectGuid>{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Json</RootNamespace>
-    <AssemblyName>Json</AssemblyName>
+    <RootNamespace>EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser</RootNamespace>
+    <AssemblyName>EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -75,6 +75,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

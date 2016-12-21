@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseEPAM_Zakhar.Json", "CourseEPAM_Zakhar.Json.csproj", "{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.csproj", "{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.ParserPerfTester.Common", "EPAM.CSCourse2016.ParserPerfTester.Common\EPAM.CSCourse2016.ParserPerfTester.Common.csproj", "{49D79469-BB52-416F-BC85-31B77FC11B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseEPAM_Zakhar.Json.UnitTests", "CourseEPAM_Zakhar.Json.UnitTests\CourseEPAM_Zakhar.Json.UnitTests.csproj", "{3E247457-82E5-4368-B4D4-E3B77B3D79B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests.csproj", "{3E247457-82E5-4368-B4D4-E3B77B3D79B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

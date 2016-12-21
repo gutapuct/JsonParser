@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CourseEPAM_Zakhar.Json
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser
 {
     static class Program
     {

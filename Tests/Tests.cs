@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CourseEPAM_Zakhar.Json
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser
 {
     public class Tests: EPAM.CSCourse2016.ParserPerfTester.Common.IParser
     {

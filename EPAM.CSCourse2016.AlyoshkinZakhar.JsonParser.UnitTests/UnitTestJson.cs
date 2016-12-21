@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CourseEPAM_Zakhar.Json.UnitTests
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests
 {
     [TestClass]
     public class UnitTestJson

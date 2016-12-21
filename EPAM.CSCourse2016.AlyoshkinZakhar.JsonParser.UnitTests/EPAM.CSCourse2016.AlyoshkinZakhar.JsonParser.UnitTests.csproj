@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CourseEPAM_Zakhar.Json.csproj">
+    <ProjectReference Include="..\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.csproj">
       <Project>{eb50b898-b6c1-40e5-9ac9-9c8974ecb7c4}</Project>
-      <Name>CourseEPAM_Zakhar.Json</Name>
+      <Name>EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

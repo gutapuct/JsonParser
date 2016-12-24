@@ -34,26 +34,26 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             }
             else
             {
-                var objects = objectsProperties as List<IObjectProperties>;
-                if (objects == null) return Consts.Error; //если ошибка в преобразовании
+                var objectsPropertiesList = objectsProperties as List<IObjectProperties>;
+                if (objectsPropertiesList == null) return Consts.Error; //если ошибка в преобразовании
                 
-                foreach (var ListObjects in objects)
+                foreach (var objects in objectsPropertiesList)
                 {
-                    var obj = ListObjects.GetProperties();
-                    if (obj.Where(i => i.Value != null && !String.IsNullOrWhiteSpace(i.Value.ToString())).Any()) //если это проперти
+                    var propertiesList = objects.GetProperties();
+                    if (propertiesList.Where(i => i.Value != null && !String.IsNullOrWhiteSpace(i.Value.ToString())).Any()) //если это проперти
                     {
                         outputText += Consts.BracketOpenBrace;
-                        foreach (var o in obj) //проходим по всем свойствам
+                        foreach (var property in propertiesList) //проходим по всем свойствам
                         {
-                            outputText += String.Format("\"{0}\":{1},", o.Name, o.Value);
+                            outputText += String.Format("\"{0}\":{1},", property.Name, property.Value);
                         }
                         outputText = outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseBrace + ",";
                     }
                     else //если это просто элемент
                     {
-                        foreach (var o in obj)
+                        foreach (var item in propertiesList)
                         {
-                            outputText += String.Format("{0},", o.Name);
+                            outputText += String.Format("{0},", item.Name);
                         }
                     }
                 }

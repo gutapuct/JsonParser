@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
-    public class JsonDeserializerZakhar: EPAM.CSCourse2016.ParserPerfTester.Common.IParser
+    public class JsonZakhar: EPAM.CSCourse2016.ParserPerfTester.Common.IParser
     {
         public string ToTestString(string json)
         {

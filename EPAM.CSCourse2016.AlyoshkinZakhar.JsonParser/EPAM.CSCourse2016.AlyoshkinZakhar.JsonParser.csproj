@@ -47,7 +47,7 @@
     <Compile Include="Models\ObjectProperties.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="JsonDeserializerZakhar\JsonDeserializerZakhar.cs" />
+    <Compile Include="JsonZakhar\JsonZakhar.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EPAM.CSCourse2016.ParserPerfTester.Common\EPAM.CSCourse2016.ParserPerfTester.Common.csproj">

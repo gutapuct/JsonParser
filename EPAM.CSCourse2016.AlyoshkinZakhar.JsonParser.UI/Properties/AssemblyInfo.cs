@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Json")]
+[assembly: AssemblyTitle("EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Json")]
+[assembly: AssemblyProduct("EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UI")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("eb50b898-b6c1-40e5-9ac9-9c8974ecb7c4")]
+[assembly: Guid("33344a50-6d49-471b-9cbb-890dd4e470e4")]
 
 // Version information for an assembly consists of the following four values:
 //

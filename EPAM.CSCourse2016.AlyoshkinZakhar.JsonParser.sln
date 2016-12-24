@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI.csproj", "{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.ParserPerfTester.Common", "EPAM.CSCourse2016.ParserPerfTester.Common\EPAM.CSCourse2016.ParserPerfTester.Common.csproj", "{49D79469-BB52-416F-BC85-31B77FC11B69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests.csproj", "{3E247457-82E5-4368-B4D4-E3B77B3D79B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.csproj", "{8F48B8CF-B116-4979-9595-9B28794F1721}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UI", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UI\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UI.csproj", "{33344A50-6D49-471B-9CBB-890DD4E470E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB50B898-B6C1-40E5-9AC9-9C8974ECB7C4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49D79469-BB52-416F-BC85-31B77FC11B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{49D79469-BB52-416F-BC85-31B77FC11B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49D79469-BB52-416F-BC85-31B77FC11B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{8F48B8CF-B116-4979-9595-9B28794F1721}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F48B8CF-B116-4979-9595-9B28794F1721}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F48B8CF-B116-4979-9595-9B28794F1721}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33344A50-6D49-471B-9CBB-890DD4E470E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33344A50-6D49-471B-9CBB-890DD4E470E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33344A50-6D49-471B-9CBB-890DD4E470E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33344A50-6D49-471B-9CBB-890DD4E470E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

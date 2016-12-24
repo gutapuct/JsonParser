@@ -9,12 +9,6 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
     {
         private List<IObjectProperties> _objectsProperties = new List<IObjectProperties>();
 
-        private Dictionary<char, char> Dictionary = new Dictionary<char, char>()
-        {
-             {Consts.BracketOpenSquare, Consts.BracketCloseSquare}, // [ ]
-             {Consts.BracketOpenBrace, Consts.BracketCloseBrace}, // { }
-        };
-
         public object JsonSerializerZakhar(string json)
         {
             bool b;

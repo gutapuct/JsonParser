@@ -42,11 +42,9 @@
   <ItemGroup>
     <Compile Include="Interfaces\IJsonSerializer.cs" />
     <Compile Include="Interfaces\IObjectProperties.cs" />
-    <Compile Include="Interfaces\IObjectSerializer.cs" />
     <Compile Include="Models\Consts.cs" />
     <Compile Include="Models\JsonSerializer.cs" />
     <Compile Include="Models\ObjectProperties.cs" />
-    <Compile Include="Models\ObjectSerializer.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JsonDeserializerZakhar\JsonDeserializerZakhar.cs" />

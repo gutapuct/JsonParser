@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.ParserPer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests.csproj", "{3E247457-82E5-4368-B4D4-E3B77B3D79B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser", "EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.csproj", "{8F48B8CF-B116-4979-9595-9B28794F1721}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3E247457-82E5-4368-B4D4-E3B77B3D79B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E247457-82E5-4368-B4D4-E3B77B3D79B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E247457-82E5-4368-B4D4-E3B77B3D79B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F48B8CF-B116-4979-9595-9B28794F1721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F48B8CF-B116-4979-9595-9B28794F1721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F48B8CF-B116-4979-9595-9B28794F1721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F48B8CF-B116-4979-9595-9B28794F1721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

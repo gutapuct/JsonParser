@@ -91,6 +91,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser\EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.csproj">
+      <Project>{8f48b8cf-b116-4979-9595-9b28794f1721}</Project>
+      <Name>EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser</Name>
+    </ProjectReference>
     <ProjectReference Include="EPAM.CSCourse2016.ParserPerfTester.Common\EPAM.CSCourse2016.ParserPerfTester.Common.csproj">
       <Project>{49d79469-bb52-416f-bc85-31b77fc11b69}</Project>
       <Name>EPAM.CSCourse2016.ParserPerfTester.Common</Name>

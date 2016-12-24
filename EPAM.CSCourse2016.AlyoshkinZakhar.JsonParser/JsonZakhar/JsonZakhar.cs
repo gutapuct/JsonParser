@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
@@ -8,6 +9,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
     {
         public string ToTestString(string json)
         {
+            json = json.Trim();
             var outputText = String.Empty;
 
             var jsonSerializer = new JsonSerializer();
@@ -21,54 +23,49 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             {
                 return null;
             }
+            else if (objectsProperties is string[]) // если просто массив
+            {
+                var result = new StringBuilder();
+                foreach (var item in (objectsProperties as string[]))
+                {
+                    result.AppendFormat("{0},", item.Trim());
+                }
+                return String.Format("[{0}]", result.Remove(result.Length-1, 1));
+            }
             else
             {
                 var objects = objectsProperties as List<IObjectProperties>;
                 if (objects == null) return Consts.Error; //если ошибка в преобразовании
-
-                if (!objects.Any(i => i.GetProperties().Any(j => j.Value != null))) //вывод, если это просто массив элементов
+                
+                foreach (var ListObjects in objects)
                 {
-                    foreach (var obj in objects)
+                    var obj = ListObjects.GetProperties();
+                    if (obj.Where(i => i.Value != null && !String.IsNullOrWhiteSpace(i.Value.ToString())).Any()) //если это проперти
                     {
-                        var objs = obj.GetProperties();
-                        foreach (var o in objs)
+                        outputText += Consts.BracketOpenBrace;
+                        foreach (var o in obj) //проходим по всем свойствам
+                        {
+                            outputText += String.Format("\"{0}\":{1},", o.Name, o.Value);
+                        }
+                        outputText = outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseBrace + ",";
+                    }
+                    else //если это просто элемент
+                    {
+                        foreach (var o in obj)
                         {
                             outputText += String.Format("{0},", o.Name);
                         }
                     }
+                }
+                if (json[0] == Consts.BracketOpenSquare) //если это массив, то добавляем скобки
+                {
                     outputText = Consts.BracketOpenSquare + outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseSquare;
                 }
-                else //вывод, если это НЕ просто массив элементов
+                else
                 {
-                    foreach (var ListObjects in objects)
-                    {
-                        var obj = ListObjects.GetProperties();
-                        if (obj.Where(i => i.Value != null && !String.IsNullOrWhiteSpace(i.Value.ToString())).Any()) //если это проперти
-                        {
-                            outputText += Consts.BracketOpenBrace;
-                            foreach (var o in obj) //проходим по всем свойствам
-                            {
-                                outputText += String.Format("\"{0}\":{1},", o.Name, o.Value);
-                            }
-                            outputText = outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseBrace + ",";
-                        }
-                        else //если это просто элемент
-                        {
-                            foreach (var o in obj)
-                            {
-                                outputText += String.Format("{0},", o.Name);
-                            }
-                        }
-                    }
-                    if (objects.Count > 1) //если элементов более одного, то добавляем скобки, указывая, что это массив
-                    {
-                        outputText = Consts.BracketOpenSquare + outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseSquare;
-                    }
-                    else
-                    {
-                        outputText = outputText.Substring(0, outputText.Length - 1);
-                    }
+                    outputText = outputText.Substring(0, outputText.Length - 1);
                 }
+                
             }
             return outputText;
         }

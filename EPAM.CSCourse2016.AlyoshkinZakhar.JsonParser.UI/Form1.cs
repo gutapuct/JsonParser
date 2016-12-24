@@ -17,7 +17,13 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
         private void Push_Click(object sender, EventArgs e)
         {
             var parser = new JsonZakhar();
-            Output.Text = parser.ToTestString(Input.Text);
+
+            var timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+            var result = parser.ToTestString(Input.Text);
+            timer.Stop();
+            
+            Output.Text = result + "\r\n\r\n\r\nElapsedTicks: " + timer.ElapsedTicks;
         }
 
         private void example1_Click(object sender, EventArgs e)

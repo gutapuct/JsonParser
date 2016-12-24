@@ -46,16 +46,16 @@
             this.Input.Location = new System.Drawing.Point(24, 47);
             this.Input.Multiline = true;
             this.Input.Name = "Input";
-            this.Input.Size = new System.Drawing.Size(381, 408);
+            this.Input.Size = new System.Drawing.Size(1076, 125);
             this.Input.TabIndex = 0;
             // 
             // Output
             // 
-            this.Output.Location = new System.Drawing.Point(462, 47);
+            this.Output.Location = new System.Drawing.Point(24, 206);
             this.Output.Multiline = true;
             this.Output.Name = "Output";
             this.Output.ReadOnly = true;
-            this.Output.Size = new System.Drawing.Size(638, 408);
+            this.Output.Size = new System.Drawing.Size(1076, 249);
             this.Output.TabIndex = 1;
             // 
             // Push

@@ -19,26 +19,20 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             else if (decimal.TryParse(json, out d)) return d; //если число
             else if (json.ToLower().Trim() == "null") return null; //если null
             else if (json[0] == Consts.CharQuotes && json[json.Length - 1] == Consts.CharQuotes) return json; //если строка
+            else if (json[0] == Consts.BracketOpenSquare && json[json.Length - 1] == Consts.BracketCloseSquare && !json.Contains(Consts.BracketOpenBrace))
+            { //если просто массив
+                return json.Substring(1, json.Length - 2).Split(',');
+            }
             else
-            {
-                if (!json.Contains(Consts.BracketOpenBrace) && !json.Contains(Consts.BracketCloseBrace)) //если просто массив
-                {
-                    var arr = json.Substring(1, json.Length - 2).Split(',');
-                    foreach (var a in arr)
-                    {
-                        var objectProperty = new ObjectProperties();
-                        objectProperty.AddProperty(a.Trim());
-                        _objectsProperties.Add(objectProperty);
-                    }
-                    return _objectsProperties;
-                }
-                //если объект(ы)
+            { //если объект(ы)
                 var name = new StringBuilder();
                 var value = new StringBuilder();
                 var objectProperties = new ObjectProperties();
                 var isValue = false;
                 var isArray = false;
                 var isObject = false;
+                var isStringValue = false;
+
                 for (var i = 0; i < json.Length; i++)
                 {
                     if (json[i] == Consts.BracketOpenBrace && !isValue)
@@ -53,9 +47,14 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                             do
                             {
                                 name.Append(json[i]);
-                                i++;
-                            } while (json[i] != '"'); //ищем конец ключа
+                            } while (json[++i] != '"'); //ищем конец ключа
+
                             while (json[i] != ':') //ищем начало значения
+                            {
+                                i++;
+                            }
+
+                            while (new char[] { ' ', '\r', 'n', '\t' }.Contains(json[i])) //удаляем перед значением пустые символы
                             {
                                 i++;
                             }
@@ -66,7 +65,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                             return Consts.Error;
                         }
                     }
-                    else if (json[i] == ',' && !isArray && !isObject) //добавляем свойство и начинаем обрабатывать следующее свойство
+                    else if (json[i] == ',')// && !isArray && !isObject) //добавляем свойство и начинаем обрабатывать следующее свойство
                     {
                         objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
                         isValue = false;
@@ -84,6 +83,23 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                     }
                     else if (isValue) //выяснение значения свойства
                     {
+                        if (json[i] == Consts.CharQuotes) //если значение - строка
+                        {
+                            try
+                            {
+                                isStringValue = true;
+                                while (isStringValue)
+                                {
+                                    value.Append(json[i++]);
+                                    if (json[i] == Consts.CharQuotes) isStringValue = false;
+                                }
+                            }
+                            catch (IndexOutOfRangeException)
+                            {
+                                return Consts.Error;
+                            }
+                        }
+
                         if (json[i] == Consts.BracketOpenSquare) isArray = true;
                         if (json[i] == Consts.BracketOpenBrace) isObject = true;
                         value.Append(json[i]);

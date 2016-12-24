@@ -15,7 +15,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
              {Consts.BracketOpenBrace, Consts.BracketCloseBrace}, // { }
         };
 
-        public object JsonDeserializer(string json)
+        public object JsonSerializerZakhar(string json)
         {
             bool b;
             decimal d;

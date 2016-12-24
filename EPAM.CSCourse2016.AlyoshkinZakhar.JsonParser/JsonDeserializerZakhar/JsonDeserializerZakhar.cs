@@ -11,7 +11,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             var outputText = String.Empty;
 
             var jsonSerializer = new JsonSerializer();
-            var objectsProperties = jsonSerializer.JsonDeserializer(json);
+            var objectsProperties = jsonSerializer.JsonSerializerZakhar(json);
 
             if (objectsProperties is bool || objectsProperties is Decimal || objectsProperties is string) //если простой формат
             {

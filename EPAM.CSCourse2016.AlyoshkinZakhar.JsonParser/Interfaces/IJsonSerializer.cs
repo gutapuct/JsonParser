@@ -2,6 +2,6 @@
 {
     public interface IJsonSerializer
     {
-        object JsonDeserializer(string json);
+        object JsonSerializerZakhar(string json);
     }
 }

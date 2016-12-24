@@ -1,8 +1,8 @@
 ﻿namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
-    public interface IObjectSerializer
+    public interface IObjectDeserializerZakhar
     {
-        string Serialize(IObjectProperties objectProperties);
+        string DeserializeZakhar(IObjectProperties objectProperties);
     }
 }
 

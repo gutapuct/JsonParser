@@ -3,10 +3,10 @@ using System.Text;
 
 namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
-    class ObjectSerializer : IObjectSerializer
+    class ObjectDeserializer : IObjectDeserializerZakhar
     {
         public StringBuilder result;
-        public string Serialize(IObjectProperties objectProperties)
+        public string DeserializeZakhar(IObjectProperties objectProperties)
         {
             result = new StringBuilder("{\r\n");
             foreach (var property in objectProperties.GetProperties())

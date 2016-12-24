@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.Properties {
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

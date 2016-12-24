@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
     public partial class Form1 : Form
     {

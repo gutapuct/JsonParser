@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI.UnitTests
 {
     [TestClass]
     public class UnitTestJson
@@ -122,6 +122,30 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser.UnitTests
 
             var internalValue = test.ToTestString(ExternalValue);
             var expectation = "[1,2,3]";
+
+            Assert.IsTrue(internalValue == expectation);
+        }
+
+        [TestMethod]
+        public void TestMethod11()
+        {
+            string ExternalValue = "[{\"name\":\"Zakhar\"}]";
+            var test = new Tests();
+
+            var internalValue = test.ToTestString(ExternalValue);
+            var expectation = "[{\"name\":\"Zakhar\"}]";
+
+            Assert.IsTrue(internalValue == expectation);
+        }
+
+        [TestMethod]
+        public void TestMethod12()
+        {
+            string ExternalValue = "{\"name\":\"Zakhar\"}";
+            var test = new Tests();
+
+            var internalValue = test.ToTestString(ExternalValue);
+            var expectation = "{\"name\":\"Zakhar\"}";
 
             Assert.IsTrue(internalValue == expectation);
         }

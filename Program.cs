@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser
+namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
     static class Program
     {

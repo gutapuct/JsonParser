@@ -1,4 +1,4 @@
-﻿namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParser
+﻿namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
     public abstract class Consts
     {

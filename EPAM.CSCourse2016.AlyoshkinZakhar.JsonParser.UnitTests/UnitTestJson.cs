@@ -13,7 +13,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI.UnitTests
             var test = new JsonZakhar();
 
             var internalValue = test.ToTestString(ExternalValue);
-            var expectation = "True";
+            var expectation = "true";
 
             Assert.IsTrue(internalValue == expectation);
         }
@@ -25,7 +25,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI.UnitTests
             var test = new JsonZakhar();
 
             var internalValue = test.ToTestString(ExternalValue);
-            var expectation = Consts.Error;
+            var expectation = "";
 
             Assert.IsTrue(internalValue == expectation);
         }
@@ -61,7 +61,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI.UnitTests
             var test = new JsonZakhar();
 
             var internalValue = test.ToTestString(ExternalValue);
-            string expectation = null;
+            string expectation = "null";
 
             Assert.IsTrue(internalValue == expectation);
         }

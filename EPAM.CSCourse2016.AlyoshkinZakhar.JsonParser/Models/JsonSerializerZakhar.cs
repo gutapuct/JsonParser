@@ -7,17 +7,16 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
     public class JsonSerializer : IJsonSerializer
     {
-        private List<IObjectProperties> _objectsProperties = new List<IObjectProperties>();
-
         public object JsonSerializerZakhar(string json)
         {
+            var objectsProperties = new List<IObjectProperties>();
             bool b;
             decimal d;
 
-            if (String.IsNullOrWhiteSpace(json)) return Consts.Error; //если пустая строка
-            else if (bool.TryParse(json, out b)) return b; //если true или false
+            if (String.IsNullOrWhiteSpace(json)) return String.Empty;
+            else if (bool.TryParse(json, out b)) return b.ToString().ToLower(); //если true или false
             else if (decimal.TryParse(json, out d)) return d; //если число
-            else if (json.ToLower().Trim() == "null") return null; //если null
+            else if (json.ToLower().Trim() == "null") return "null"; //если null
             else if (json[0] == Consts.CharQuotes && json[json.Length - 1] == Consts.CharQuotes) return json; //если строка
             else if (json[0] == Consts.BracketOpenSquare && json[json.Length - 1] == Consts.BracketCloseSquare && !json.Contains(Consts.BracketOpenBrace))
             { //если просто массив
@@ -65,17 +64,17 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                             return Consts.Error;
                         }
                     }
-                    else if (json[i] == ',')// && !isArray && !isObject) //добавляем свойство и начинаем обрабатывать следующее свойство
+                    else if (json[i] == ',' && !isArray && !isObject && isValue) //добавляем свойство и начинаем обрабатывать следующее свойство
                     {
-                        objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
+                        objectProperties.AddProperty(name.ToString().Trim(), JsonSerializerZakhar(value.ToString().Trim()));
                         isValue = false;
                         name = new StringBuilder();
                         value = new StringBuilder();
                     }
                     else if (json[i] == Consts.BracketCloseBrace && !isObject) //добавляем объект, если встречаем '}' не в значении свойства
                     {
-                        objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
-                        _objectsProperties.Add(objectProperties);
+                        objectProperties.AddProperty(name.ToString().Trim(), JsonSerializerZakhar(value.ToString().Trim()));
+                        objectsProperties.Add(objectProperties);
                         isValue = false;
                         name = new StringBuilder();
                         value = new StringBuilder();
@@ -109,12 +108,12 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                 }
                 if (name.Length != 0)
                 {
-                    objectProperties.AddProperty(name.ToString().Trim(), (object)value.ToString().Trim());
-                    _objectsProperties.Add(objectProperties);
+                    objectProperties.AddProperty(name.ToString().Trim(), JsonSerializerZakhar(value.ToString().Trim()));
+                    objectsProperties.Add(objectProperties);
                 }
                 if (isObject || isArray) return Consts.Error;
 
-                return _objectsProperties; //возвращаем все объекты
+                return objectsProperties; //возвращаем все объекты
             }
         }
     }

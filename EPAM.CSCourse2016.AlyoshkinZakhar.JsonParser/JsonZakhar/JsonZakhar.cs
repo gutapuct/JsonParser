@@ -9,7 +9,6 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
     {
         public string ToTestString(string json)
         {
-            json = json.Trim();
             var outputText = String.Empty;
 
             var jsonSerializer = new JsonSerializer();
@@ -18,10 +17,6 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             if (objectsProperties is bool || objectsProperties is Decimal || objectsProperties is string) //если простой формат
             {
                 return objectsProperties.ToString();
-            }
-            else if (objectsProperties == null) //если null
-            {
-                return null;
             }
             else if (objectsProperties is string[]) // если просто массив
             {
@@ -35,28 +30,9 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             else
             {
                 var objectsPropertiesList = objectsProperties as List<IObjectProperties>;
-                if (objectsPropertiesList == null) return Consts.Error; //если ошибка в преобразовании
-                
-                foreach (var objects in objectsPropertiesList)
-                {
-                    var propertiesList = objects.GetProperties();
-                    if (propertiesList.Where(i => i.Value != null && !String.IsNullOrWhiteSpace(i.Value.ToString())).Any()) //если это проперти
-                    {
-                        outputText += Consts.BracketOpenBrace;
-                        foreach (var property in propertiesList) //проходим по всем свойствам
-                        {
-                            outputText += String.Format("\"{0}\":{1},", property.Name, property.Value);
-                        }
-                        outputText = outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseBrace + ",";
-                    }
-                    else //если это просто элемент
-                    {
-                        foreach (var item in propertiesList)
-                        {
-                            outputText += String.Format("{0},", item.Name);
-                        }
-                    }
-                }
+
+                OutputValue(objectsPropertiesList, ref outputText);
+
                 if (json[0] == Consts.BracketOpenSquare) //если это массив, то добавляем скобки
                 {
                     outputText = Consts.BracketOpenSquare + outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseSquare;
@@ -69,6 +45,57 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             }
             return outputText;
         }
+
+        private void OutputValue (List<IObjectProperties> objectsPropertiesList, ref string outputText)
+        {
+            foreach (var objects in objectsPropertiesList)
+            {
+                var propertiesList = objects.GetProperties();
+                if (propertiesList.Where(i => i.Value != null && !String.IsNullOrWhiteSpace(i.Value.ToString())).Any()) //если это проперти
+                {
+                    outputText += Consts.BracketOpenBrace;
+                    foreach (var property in propertiesList) //проходим по всем свойствам
+                    {
+                        outputText += String.Format("\"{0}\":", property.Name);
+                        if (property.Value is List<IObjectProperties>)
+                        {
+                            if ((property.Value as List<IObjectProperties>).Count > 1)
+                            {
+                                outputText += Consts.BracketOpenSquare;
+                                OutputValue(property.Value as List<IObjectProperties>, ref outputText);
+                                outputText = outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseSquare + ",";
+                            }
+                            else
+                            {
+                                OutputValue(property.Value as List<IObjectProperties>, ref outputText);
+                            }
+                        }
+                        else if (property.Value is string[])
+                        {
+                            outputText += Consts.BracketOpenSquare;
+                            foreach (var item in property.Value as string[])
+                            {
+                                outputText += String.Format("{0},", item.Trim());
+                            }
+                            outputText = String.Format("{0}],", outputText.Remove(outputText.Length - 1, 1));
+                        }
+                        else
+                        {
+                            outputText += String.Format("{0},", property.Value);
+                        }
+                    }
+                    outputText = outputText.Substring(0, outputText.Length - 1) + Consts.BracketCloseBrace + ",";
+                }
+                else //если это просто элемент
+                {
+                    foreach (var item in propertiesList)
+                    {
+                        outputText += String.Format("{0},", item.Name);
+                    }
+                }
+            }
+        }
+        
 
     }
 }

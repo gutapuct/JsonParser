@@ -46,14 +46,15 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                             do
                             {
                                 name.Append(json[i]);
-                            } while (json[++i] != '"'); //ищем конец ключа
+                            } while (json[++i] != Consts.CharQuotes); //ищем кавычки, означающие конец ключа
 
                             while (json[i] != ':') //ищем начало значения
                             {
                                 i++;
                             }
 
-                            while (new char[] { ' ', '\r', 'n', '\t' }.Contains(json[i])) //удаляем перед значением пустые символы
+                            var whiteSpaces = new char[] { ' ', '\r', '\n', '\t' };
+                            while (whiteSpaces.Contains(json[i])) //удаляем перед значением пустые символы
                             {
                                 i++;
                             }
@@ -99,8 +100,8 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                             }
                         }
 
-                        if (json[i] == Consts.BracketOpenSquare) isArray = true;
-                        if (json[i] == Consts.BracketOpenBrace) isObject = true;
+                        if (json[i] == Consts.BracketOpenSquare) isArray = true; //если в строке [
+                        if (json[i] == Consts.BracketOpenBrace) isObject = true; //если в строке {
                         value.Append(json[i]);
                         if (json[i] == Consts.BracketCloseSquare) isArray = false;
                         if (json[i] == Consts.BracketCloseBrace) isObject = false;

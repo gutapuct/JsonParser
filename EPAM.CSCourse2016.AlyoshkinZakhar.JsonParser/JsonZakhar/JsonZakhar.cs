@@ -91,7 +91,9 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                         outputText.AppendFormat("{0},", item.Name);
                     }
                 }
-            }
-        }
+            } //конец главного foreache
+        } //конец метода
+
+
     }
 }

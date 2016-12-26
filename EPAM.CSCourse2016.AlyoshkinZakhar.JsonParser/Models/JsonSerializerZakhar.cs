@@ -7,15 +7,15 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
 {
     public class JsonSerializer : IJsonSerializer
     {
+        private System.Globalization.CultureInfo _cultureInfo = new System.Globalization.CultureInfo("en-US");
         public object JsonSerializerZakhar(string json)
         {
-            var objectsProperties = new List<IObjectProperties>();
             bool b;
             decimal d;
 
             if (String.IsNullOrWhiteSpace(json)) return String.Empty;
             else if (bool.TryParse(json, out b)) return b.ToString().ToLower(); //если true или false
-            else if (decimal.TryParse(json, out d)) return d; //если число
+            else if (Decimal.TryParse(json, System.Globalization.NumberStyles.Number, _cultureInfo, out d)) return json; //если число
             else if (json.ToLower().Trim() == "null") return "null"; //если null
             else if (json[0] == Consts.CharQuotes && json[json.Length - 1] == Consts.CharQuotes) return json; //если строка
             else if (json[0] == Consts.BracketOpenSquare && json[json.Length - 1] == Consts.BracketCloseSquare && !json.Contains(Consts.BracketOpenBrace))
@@ -24,12 +24,13 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
             }
             else
             { //если объект(ы)
+                var objectsProperties = new List<IObjectProperties>();
                 var name = new StringBuilder();
                 var value = new StringBuilder();
                 var objectProperties = new ObjectProperties();
                 var isValue = false;
-                var isArray = false;
-                var isObject = false;
+                short arrayInCount = 0; //счетчик вложенностей массива
+                short objectInCount = 0; //счетчик вложенностей объектов
                 var isStringValue = false;
 
                 for (var i = 0; i < json.Length; i++)
@@ -65,14 +66,14 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                             return Consts.Error;
                         }
                     }
-                    else if (json[i] == ',' && !isArray && !isObject && isValue) //добавляем свойство и начинаем обрабатывать следующее свойство
+                    else if (json[i] == ',' && arrayInCount == 0 && objectInCount == 0 && isValue) //добавляем свойство и начинаем обрабатывать следующее свойство
                     {
                         objectProperties.AddProperty(name.ToString().Trim(), JsonSerializerZakhar(value.ToString().Trim()));
                         isValue = false;
                         name = new StringBuilder();
                         value = new StringBuilder();
                     }
-                    else if (json[i] == Consts.BracketCloseBrace && !isObject) //добавляем объект, если встречаем '}' не в значении свойства
+                    else if (json[i] == Consts.BracketCloseBrace && objectInCount == 0) //добавляем объект, если встречаем '}' не в значении свойства
                     {
                         objectProperties.AddProperty(name.ToString().Trim(), JsonSerializerZakhar(value.ToString().Trim()));
                         objectsProperties.Add(objectProperties);
@@ -100,11 +101,11 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                             }
                         }
 
-                        if (json[i] == Consts.BracketOpenSquare) isArray = true; //если в строке [
-                        if (json[i] == Consts.BracketOpenBrace) isObject = true; //если в строке {
+                        if (json[i] == Consts.BracketOpenSquare) arrayInCount++; //если в строке [, то увеличиваем счетчик вложенносте
+                        if (json[i] == Consts.BracketOpenBrace) objectInCount++; //если в строке {, то увеличиваем счетчик вложенносте
                         value.Append(json[i]);
-                        if (json[i] == Consts.BracketCloseSquare) isArray = false;
-                        if (json[i] == Consts.BracketCloseBrace) isObject = false;
+                        if (json[i] == Consts.BracketCloseSquare) arrayInCount--; //если в строке ], то уменьшаем счетчик вложенносте
+                        if (json[i] == Consts.BracketCloseBrace) objectInCount--; //если в строке }, то уменьшаем счетчик вложенносте
                     }
                 }
                 if (name.Length != 0)
@@ -112,7 +113,7 @@ namespace EPAM.CSCourse2016.AlyoshkinZakhar.JsonParserUI
                     objectProperties.AddProperty(name.ToString().Trim(), JsonSerializerZakhar(value.ToString().Trim()));
                     objectsProperties.Add(objectProperties);
                 }
-                if (isObject || isArray) return Consts.Error;
+                if (objectInCount != 0 || arrayInCount != 0) return Consts.Error;
 
                 return objectsProperties; //возвращаем все объекты
             }
